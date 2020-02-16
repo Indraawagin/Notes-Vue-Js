@@ -8,8 +8,10 @@
         </a>
       </div>
       <div class="frame-notes">
-        <button @click="newNote" class="bg-success btn btn-new-note">+ Note Baru</button>
-        <ListNotes :propNotes="notes" :propEditNotes="editNote" />
+        <button @click="newNote" class="bg-success btn btn-new-note">
+          + Note Baru
+        </button>
+        <ListNotes :propEditNotes="editNote" />
       </div>
     </div>
     <div class="kanan">
@@ -17,7 +19,6 @@
       <FormNotes
         :propSaveNote="saveNote"
         :propUpdateNote="updateNote"
-        :propDataForm="dataForm"
         :propRemoveNote="removeNote"
       />
     </div>
@@ -31,21 +32,7 @@ import FormNotes from "./components/formNotes.vue";
 export default {
   name: "App",
   data: function() {
-    return {
-      dataForm: {},
-      notes: [
-        {
-          id: 1,
-          title: "Admin",
-          description: "Ini isi Admin"
-        },
-        {
-          id: 2,
-          title: "Member",
-          description: "Ini isi Member"
-        }
-      ]
-    };
+    return {};
   },
   components: {
     ListNotes,
@@ -65,9 +52,6 @@ export default {
       let newNote = { id: newId, title: title, description: description };
       this.notes.push(newNote);
       this.editNote(newId);
-    },
-    editNote(id) {
-      this.dataForm = this.notes.find(note => note.id === id);
     },
     updateNote(id, title, description) {
       let noteIndex = this.notes.findIndex(note => note.id === id);

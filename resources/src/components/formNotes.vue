@@ -2,7 +2,13 @@
   <div class="formNotes">
     <form @submit="submitNote">
       <div class="menu">
-        <button type="button" @click="submitRemove" class="bg-danger btn btn-delete">Delete</button>
+        <button
+          type="button"
+          @click="submitRemove"
+          class="bg-danger btn btn-delete"
+        >
+          Delete
+        </button>
         <button type="submit" class="bg-success btn">Save</button>
       </div>
       <div class="content">
@@ -24,9 +30,6 @@ export default {
   props: {
     propSaveNote: {
       type: Function
-    },
-    propDataForm: {
-      type: Object
     },
     propUpdateNote: {
       type: Function
@@ -60,12 +63,12 @@ export default {
       (this.id = 0), (this.title = ""), (this.description = "");
     }
   },
-  watch: {
-    propDataForm: function(note) {
-      this.id = note.id;
-      this.title = note.title;
-      this.description = note.description;
-    }
+  mounted() {
+    this.$root.$on("emitForm", data => {
+      this.id = data.id;
+      this.title = data.title;
+      this.description = data.description;
+    });
   }
 };
 </script>
