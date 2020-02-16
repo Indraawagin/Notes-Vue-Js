@@ -16,11 +16,7 @@
     </div>
     <div class="kanan">
       <!-- Form -->
-      <FormNotes
-        :propSaveNote="saveNote"
-        :propUpdateNote="updateNote"
-        :propRemoveNote="removeNote"
-      />
+      <FormNotes :propSaveNote="saveNote" :propUpdateNote="updateNote" />
     </div>
   </div>
 </template>
@@ -57,10 +53,6 @@ export default {
       let noteIndex = this.notes.findIndex(note => note.id === id);
       this.notes[noteIndex].title = title;
       this.notes[noteIndex].description = description;
-    },
-    removeNote(id) {
-      let noteIndex = this.notes.findIndex(note => note.id === id);
-      this.notes.splice(noteIndex, 1);
     }
   }
 };
