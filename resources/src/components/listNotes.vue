@@ -1,8 +1,8 @@
 <template>
   <div class="listNotes">
     <ul>
-      <li v-for="(row, index) in propNotes" :key="index">
-        <button class="btn-note" @click="idNote(row.id)">
+      <li v-for="(row, index) in notes" :key="index">
+        <button class="btn-note" @click="editNote(row.id)">
           <label>{{ row.title }}</label>
           <label>{{ row.description }}</label>
         </button>
@@ -14,21 +14,58 @@
 <script type="text/javascript">
 export default {
   name: "listNotes",
-  props: {
-    propNotes: {
-      type: Array
-    },
-    propEditNotes: {
-      type: Function
-    }
-  },
   data: function() {
-    return {};
+    return {
+      notes: [
+        {
+          id: 1,
+          title: "Admin",
+          description: "Ini isi Admin"
+        },
+        {
+          id: 2,
+          title: "Member",
+          description: "Ini isi Member"
+        }
+      ]
+    };
   },
   methods: {
-    idNote(id) {
-      this.propEditNotes(id);
+    editNote(id) {
+      let dataForm = this.notes.find(note => note.id === id);
+      dataForm.mode = "update";
+      this.$root.$emit("emitForm", dataForm);
+    },
+    createNewId() {
+      let newId = 0;
+      if (this.notes.length === 0) {
+        newId = 1;
+      } else {
+        newId = this.notes[this.notes.length - 1].id + 1;
+      }
+      return newId;
     }
+  },
+  mounted() {
+    this.$root.$on("emitRemoveNote", data => {
+      let noteIndex = this.notes.findIndex(note => note.id === data.id);
+      this.notes.splice(noteIndex, 1);
+    });
+    this.$root.$on("emitUpdateNote", data => {
+      let noteIndex = this.notes.findIndex(note => note.id === data.id);
+      this.notes[noteIndex].title = data.title;
+      this.notes[noteIndex].description = data.description;
+    });
+    this.$root.$on("emitSaveNote", data => {
+      let newId = this.createNewId;
+      let newNote = {
+        id: newId,
+        title: data.title,
+        description: data.description
+      };
+      this.notes.push(newNote);
+      this.editNote(newId);
+    });
   }
 };
 </script>
