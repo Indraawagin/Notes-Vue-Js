@@ -8,9 +8,7 @@
         </a>
       </div>
       <div class="frame-notes">
-        <button @click="newNote" class="bg-success btn btn-new-note">
-          + Note Baru
-        </button>
+        <button @click="newNote" class="bg-success btn btn-new-note">+ Note Baru</button>
         <ListNotes />
       </div>
     </div>
@@ -36,7 +34,7 @@ export default {
   },
   methods: {
     newNote() {
-      let dataForm = { id: 0, title: "", description: "" };
+      let dataForm = { id: 0, title: "", description: "", mode: "save" };
       this.$root.$emit("emitForm", dataForm);
     }
   }
