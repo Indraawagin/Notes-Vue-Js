@@ -2,14 +2,29 @@
   <div class="formNotes">
     <form>
       <div class="menu">
-        <button type="button" @click="submitRemove" class="bg-danger btn btn-delete">Delete</button>
-        <button type="submit" @click="submitSave" v-if="mode == 'save'" class="bg-success btn">Save</button>
+        <button
+          type="button"
+          @click="submitRemove"
+          class="bg-danger btn btn-delete"
+        >
+          Delete
+        </button>
+        <button
+          type="submit"
+          @click="submitSave"
+          v-if="mode == 'save'"
+          class="bg-success btn"
+        >
+          Save
+        </button>
         <button
           type="button"
           @click="submitUpdate"
           v-if="mode == 'update'"
           class="bg-success btn"
-        >Update</button>
+        >
+          Update
+        </button>
       </div>
       <div class="content">
         <input type="hidden" class="text" placeholder="id" v-model="id" />
@@ -25,6 +40,8 @@
 </template>
 
 <script type="text/javascript">
+import axios from "axios";
+
 export default {
   name: "formNotes",
   data: function() {
@@ -37,11 +54,19 @@ export default {
   },
   methods: {
     submitSave() {
-      let data = {
-        title: this.title,
-        description: this.description
-      };
-      this.$root.$emit("emitSaveNote", data);
+      let params = new URLSearchParams();
+      params.append("title", this.title);
+      params.append("description", this.description);
+      axios
+        .post("http://localhost/Project/belajar_vue/note/create", params)
+        .then(response => {
+          let data = {
+            id: response.data.id,
+            title: this.title,
+            description: this.description
+          };
+          this.$root.$emit("emitSaveNote", data);
+        });
     },
     submitUpdate() {
       let data = {
