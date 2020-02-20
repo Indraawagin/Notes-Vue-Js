@@ -12,22 +12,13 @@
 </template>
 
 <script type="text/javascript">
+import axios from "axios";
+
 export default {
   name: "listNotes",
   data: function() {
     return {
-      notes: [
-        {
-          id: 1,
-          title: "Admin",
-          description: "Ini isi Admin"
-        },
-        {
-          id: 2,
-          title: "Member",
-          description: "Ini isi Member"
-        }
-      ]
+      notes: []
     };
   },
   methods: {
@@ -44,9 +35,16 @@ export default {
         newId = this.notes[this.notes.length - 1].id + 1;
       }
       return newId;
+    },
+    getData() {
+      axios.get("http://localhost/Project/belajar_vue/note").then(response => {
+        console.log(response);
+        this.notes = response.data;
+      });
     }
   },
   mounted() {
+    this.getData();
     this.$root.$on("emitRemoveNote", data => {
       let noteIndex = this.notes.findIndex(note => note.id === data.id);
       this.notes.splice(noteIndex, 1);
