@@ -4,6 +4,7 @@ Membuat aplikasi web notes sederhana menggunakan vue js
 # How to use:
   - buka file vue.config.js, ubah publicPath: "dist/" menjadi publicPath: "./"
   - git bash lokasi folder notes vue js
+  - cd resources
   - npm install
   - npm run serve
   
@@ -24,3 +25,6 @@ Membuat aplikasi web notes sederhana menggunakan vue js
 
 # NOTES!!
   - Agar bisa deploy, ubah isi dari vue.config.js, publicPath: "./" menjadi publicPath: "dist/"
+  - git bash lokasi folder notes vue js
+  - cd resources
+  - npm run build
