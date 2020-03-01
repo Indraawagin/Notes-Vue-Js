@@ -1,5 +1,7 @@
 # Notes-Vue-Js
 Membuat aplikasi web notes sederhana menggunakan vue js
+![Document](https://user-images.githubusercontent.com/55887819/75626208-8dfaca00-5c00-11ea-8220-ebc9fc00a1c2.png)
+
 
 # How to use:
   - jalankan web server & database (xamapp)
