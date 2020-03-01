@@ -79,7 +79,7 @@ body {
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #139e5f;
+  color: #df55cc;
 }
 .frame-notes {
   overflow-y: scroll;
@@ -95,6 +95,15 @@ body {
   background: #24b774;
   color: white;
 }
+
+.bg-success.btn.btn-new-note {
+  background: #df55cc;
+}
+
+.bg-success.btn.btn-new-note:hover {
+  background: #f84df8;
+}
+
 .bg-danger {
   background: #b50000;
   color: white;
