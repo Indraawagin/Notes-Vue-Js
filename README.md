@@ -2,8 +2,9 @@
 Membuat aplikasi web notes sederhana menggunakan vue js
 
 # How to use:
+  - jalankan web server & database (xamapp)
   - buka file vue.config.js, ubah publicPath: "dist/" menjadi publicPath: "./"
-  - git bash lokasi folder notes vue js
+  - open with cmd lokasi folder notes vue js
   - cd resources
   - npm install
   - npm run serve
@@ -19,12 +20,13 @@ Membuat aplikasi web notes sederhana menggunakan vue js
     - listNotes :
       - axios
         .post("Lokasi penyimpanan/server ex:http://localhost/Project/belajar_vue/note", params) ....
+    
 # Database :
   - Buat database notes_vue & table note (id , title , description)
   - atau export database yang saya berikan
 
 # NOTES!!
   - Agar bisa deploy, ubah isi dari vue.config.js, publicPath: "./" menjadi publicPath: "dist/"
-  - git bash lokasi folder notes vue js
+  - open with cmd lokasi folder notes vue js
   - cd resources
   - npm run build
